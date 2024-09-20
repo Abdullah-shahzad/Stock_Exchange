@@ -45,16 +45,19 @@ This project is a simple **Stock Exchange API** built using Django and Django RE
    python manage.py runserver
 
    
-API Endpoints
-Endpoint	Method	Description.
-/users/	POST	Create a new user.
-/users/<str:username>/	GET	Retrieve user details by username.
-/create_stock/	POST	Create a new stock.
-/stocks/	GET	List all available stocks.
-/stocks/<str:ticker>/	GET	Retrieve stock data by ticker.
-/transactions/	POST	Create a new transaction (Buy/Sell stock).
-/transactions/<str:username>/	GET	List all transactions for a specific user.
-/transactions/<str:username>/<str:start_time>/<str:end_time>/	GET	List transactions by user within a time range.
+## API Endpoints
+
+| Endpoint                                      | Method | Description                                       |
+|-----------------------------------------------|--------|---------------------------------------------------|
+| `/users/`                                     | POST   | Create a new user.                                |
+| `/users/<str:username>/`                      | GET    | Retrieve user details by username.                |
+| `/create_stock/`                              | POST   | Create a new stock.                               |
+| `/stocks/`                                    | GET    | List all available stocks.                        |
+| `/stocks/<str:ticker>/`                       | GET    | Retrieve stock data by ticker.                    |
+| `/transactions/`                              | POST   | Create a new transaction (Buy/Sell stock).        |
+| `/transactions/<str:username>/`               | GET    | List all transactions for a specific user.        |
+| `/transactions/<str:username>/<str:start_time>/<str:end_time>/` | GET | List transactions by user within a time range.    |
+
 
 #Models
 User
