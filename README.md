@@ -82,22 +82,22 @@ If you have any questions, feel free to contact me at abdullahkpr22@gmail.com
 
 
 ## GIVEN TASK:
-Endpoints
-POST /users/: To register a new user with a username and initial balance.
-GET /users/{username}/: To retrieve user data. 
-POST /stocks/: To ingest stock data and store it in the Postgres database.
-GET /stocks/: To retrieve all stock data.
-GET /stocks/{ticker}/: To retrieve specific stock data.
-POST /transactions/: To post a new transaction. This should take user_id, ticker, transaction_type, and transaction_volume as inputs. The endpoint should calculate the transaction_price based on the current stock price and update the user's balance.
-GET /transactions/{user_id}/: To retrieve all transactions of a specific user.
-GET /transactions/{user_id}/{start_timestamp}/{end_timestamp}/: To retrieve transactions of a specific user between two timestamps.
-Instruction
-Add Swagger documentation.
-The processing should validate the transaction (e.g., check if the user has enough balance for a buy transaction) and update the Users and Transactions tables accordingly.
-Note:
-Send a PR for the rest app.
-Add the README.md file so that I can set up the project on my machine and can run it by following the README.md
-Also, follow the standards for writing the rest app.
+*Endpoints
+*POST /users/: To register a new user with a username and initial balance.
+*GET /users/{username}/: To retrieve user data. 
+*POST /stocks/: To ingest stock data and store it in the Postgres database.
+*GET /stocks/: To retrieve all stock data.
+*GET /stocks/{ticker}/: To retrieve specific stock data.
+*POST /transactions/: To post a new transaction. This should take user_id, ticker, transaction_type, and transaction_volume as inputs. The *endpoint should calculate the transaction_price based on the current stock price and update the user's balance.
+*GET /transactions/{user_id}/: To retrieve all transactions of a specific user.
+*GET /transactions/{user_id}/{start_timestamp}/{end_timestamp}/: To retrieve transactions of a specific user between two timestamps.
+*Instruction
+*Add Swagger documentation.
+*The processing should validate the transaction (e.g., check if the user has enough balance for a buy transaction) and update the Users and *Transactions tables accordingly.
+*Note:
+*Send a PR for the rest app.
+*Add the README.md file so that I can set up the project on my machine and can run it by following the README.md
+*Also, follow the standards for writing the rest app.
 
 
 ## pending
