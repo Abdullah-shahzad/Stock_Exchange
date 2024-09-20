@@ -59,21 +59,6 @@ This project is a simple **Stock Exchange API** built using Django and Django RE
 | `/transactions/<str:username>/<str:start_time>/<str:end_time>/` | GET | List transactions by user within a time range.    |
 
 
-#Models
-User
-* username: The username of the user (unique).
-* balance: The balance available for transactions.
-Stocks
-* ticker: Stock ticker symbol (unique).
-* stock_price: The price of the stock.
-* stock_name: The name of the stock.
-Transaction
-* user: The user associated with the transaction.
-* ticker: The stock involved in the transaction.
-* transaction_type: Either 'BUY' or 'SELL'.
-* transaction_volume: The amount of stock bought or sold.
-* transaction_price: The price of the transaction.
-* created_time: The time when the transaction was created. 
 API Documentation
 This project uses drf-yasg to generate and display interactive API documentation. You can view it at:
 http://127.0.0.1:8000/swagger/
