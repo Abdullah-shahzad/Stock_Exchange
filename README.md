@@ -94,5 +94,5 @@ If you have any questions, feel free to contact me at abdullahkpr22@gmail.com
 
 ## pending
 - authentication
-- required field implementation of swagger
+- Implementing required fields in Swagger for improved validation.
 
