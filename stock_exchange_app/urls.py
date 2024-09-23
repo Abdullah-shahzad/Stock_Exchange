@@ -7,10 +7,14 @@ from .views import (
     get_stock,
     create_transaction,
     list_user_transactions,
-    list_transactions_by_timestamp
+    list_transactions_by_timestamp,
+    register,
+    login
 )
 
 urlpatterns = [
+    path('register/', register, name='create_user'),
+    path('login/', login, name='create_user'),
     path('users/', create_user, name='create_user'),
     path('users/<str:username>/', get_user, name='get_user'),
     path('create_stock', create_stock, name='create_stock'),

@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import User, Stocks, Transaction
+from .models import Users, Stocks, Transaction
 
 
 
-admin.site.register(User)
+admin.site.register(Users)
 admin.site.register(Stocks)
 admin.site.register(Transaction)
 

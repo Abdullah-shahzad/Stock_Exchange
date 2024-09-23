@@ -1,6 +1,6 @@
 from django.db import models
 
-class User(models.Model):
+class Users(models.Model):
     """
     A model representing a user with a username and balance.
     """
@@ -41,7 +41,7 @@ class Transaction(models.Model):
         ('SELL', 'Sell')
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     ticker = models.ForeignKey(Stocks, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=4, choices=TRANSACTION_TYPE_CHOICES, default='BUY')
     transaction_volume = models.FloatField()
