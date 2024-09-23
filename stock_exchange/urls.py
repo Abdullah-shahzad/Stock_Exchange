@@ -16,26 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from rest_framework import permissions
+from rest_framework.permissions import AllowAny
 import stock_exchange_app
-from stock_exchange_app import  urls
-from rest_framework.schemas import get_schema_view
+from stock_exchange_app import urls
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Stock Exchange Transaction API",
+        title="Stock Exchange APP",
         default_version='v1',
-        description="API for managing users, stocks, and transactions",
+        description="Stock Exchange ",
         contact=openapi.Contact(email="abdullahkpr22@gmail.com"),
     ),
     public=True,
+    permission_classes=[AllowAny],
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(stock_exchange_app.urls)),
-
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
