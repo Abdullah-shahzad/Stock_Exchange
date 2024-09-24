@@ -78,6 +78,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'stock_exchange.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+
+    ]
+}
 
 SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,

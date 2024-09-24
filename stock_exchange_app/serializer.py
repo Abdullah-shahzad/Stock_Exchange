@@ -56,7 +56,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
         fields = ['username', 'balance']
-        read_only_fields = ['balance']
 
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
