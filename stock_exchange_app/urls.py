@@ -1,26 +1,31 @@
 from django.urls import path
 from .views import (
-    create_user,
-    get_user,
-    create_stock,
-    list_stocks,
-    get_stock,
-    create_transaction,
-    list_user_transactions,
-    list_transactions_by_timestamp,
-    register,
-    login
+    RegisterView,
+    LoginView,
+    CreateUserView,
+    CreateStockView,
+    CreateTransactionView,
+    ListStocksView,
+    ListUserTransactionsView,
+    ListTransactionsByTimestampView,
+    GetUserView,
+    GetStockView,
 )
 
 urlpatterns = [
-    path('register/', register, name='create_user'),
-    path('login/', login, name='create_user'),
-    path('users/', create_user, name='create_user'),
-    path('users/<str:username>/', get_user, name='get_user'),
-    path('create_stock', create_stock, name='create_stock'),
-    path('stocks/', list_stocks, name='list_stocks'),
-    path('stocks/<str:ticker>/', get_stock, name='get_stock'),
-    path('transactions/', create_transaction, name='create_transaction'),
-    path('transactions/<str:username>/', list_user_transactions, name='list_user_transactions'),
-    path('transactions/<str:username>/<str:start_time>/<str:end_time>/', list_transactions_by_timestamp, name='statement'),
+    path('register/', RegisterView.as_view(), name='create_user'),
+    path('login/', LoginView.as_view(), name='create_user'),
+    path('users/', CreateUserView.as_view(), name='create_user'),
+    path('users/<str:username>/', GetUserView.as_view(), name='get_user'),
+    path('create_stock', CreateStockView.as_view(), name='create_stock'),
+    path('stocks/', ListStocksView.as_view(), name='list_stocks'),
+    path('stocks/<str:ticker>/', GetStockView.as_view(), name='get_stock'),
+    path('transactions/', CreateTransactionView.as_view(), name='create_transaction'),
+    path('transactions/<str:username>/', ListUserTransactionsView.as_view(), name='list_user_transactions'),
+    path('transactions/<str:username>/<str:start_time>/<str:end_time>/', ListTransactionsByTimestampView.as_view(), name='Transaction_with_timestamp'),
 ]
+
+
+
+
+
