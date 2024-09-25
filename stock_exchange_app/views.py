@@ -3,10 +3,9 @@ from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
 from django.utils.dateparse import parse_datetime
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.status import HTTP_401_UNAUTHORIZED
 from .authentication import Generate_JWT_token, JWT_Required
 from .models import Users, Stocks, Transaction
@@ -15,15 +14,22 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.views import APIView
-from stock_exchange_app.serializer import UserSerializer, StockSerializer, TransactionSerializer, registerSerializer, LoginSerializer
+from stock_exchange_app.serializer import UserSerializer, StockSerializer, TransactionSerializer, RegisterSerializer, LoginSerializer
 
 
 class RegisterView(APIView):
+    """
+    Handles user registration.
+
+    POST:
+    Register a new user. Validates input data, checks for username uniqueness,
+    hashes the password, creates a user, and returns a JWT token.
+    """
 
     @permission_classes([AllowAny])
-    @swagger_auto_schema(request_body=registerSerializer)
+    @swagger_auto_schema(request_body=RegisterSerializer)
     def post(self, request):
-        serializer = registerSerializer(data=request.data)
+        serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             email = serializer.validated_data['email']
             username = serializer.validated_data['username']
@@ -45,8 +51,13 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class LoginView(APIView):
+    """
+    Handles user login.
+
+    POST:
+    Authenticates the user with username and password, and returns a JWT token.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema(request_body=LoginSerializer)
@@ -56,7 +67,6 @@ class LoginView(APIView):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-
             token = Generate_JWT_token(user)
 
             # Return success response with token
@@ -68,8 +78,13 @@ class LoginView(APIView):
             return Response({'error': 'Invalid credentials'}, status=HTTP_401_UNAUTHORIZED)
 
 
-
 class CreateUserView(APIView):
+    """
+    Creates a new user. Requires JWT authentication.
+
+    POST:
+    Creates a new user with balance information.
+    """
 
     @method_decorator(JWT_Required)
     @swagger_auto_schema(request_body=UserSerializer)
@@ -84,6 +99,12 @@ class CreateUserView(APIView):
 
 
 class GetUserView(APIView):
+    """
+    Retrieves user details by username.
+
+    GET:
+    Returns the user information including balance.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema()
@@ -94,6 +115,12 @@ class GetUserView(APIView):
 
 
 class CreateStockView(APIView):
+    """
+    Creates a new stock. Requires JWT authentication.
+
+    POST:
+    Creates a new stock with ticker, stock price, and stock name.
+    """
 
     @method_decorator(JWT_Required)
     @swagger_auto_schema(request_body=StockSerializer)
@@ -107,8 +134,13 @@ class CreateStockView(APIView):
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class ListStocksView(APIView):
+    """
+    Lists all stocks available in the database.
+
+    GET:
+    Returns a list of all stocks.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema()
@@ -119,6 +151,12 @@ class ListStocksView(APIView):
 
 
 class GetStockView(APIView):
+    """
+    Retrieves stock details by ticker.
+
+    GET:
+    Returns the stock information by ticker.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema()
@@ -129,6 +167,12 @@ class GetStockView(APIView):
 
 
 class CreateTransactionView(APIView):
+    """
+    Creates a new transaction for buying or selling stocks. Requires JWT authentication.
+
+    POST:
+    Creates a transaction, checks for balance in case of buy, updates user balance accordingly.
+    """
 
     @method_decorator(JWT_Required)
     @swagger_auto_schema(request_body=TransactionSerializer)
@@ -161,6 +205,12 @@ class CreateTransactionView(APIView):
 
 
 class ListUserTransactionsView(APIView):
+    """
+    Lists all transactions for a specific user.
+
+    GET:
+    Returns all transactions performed by the specified user.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema()
@@ -172,6 +222,12 @@ class ListUserTransactionsView(APIView):
 
 
 class ListTransactionsByTimestampView(APIView):
+    """
+    Lists all transactions for a user within a specific time range.
+
+    GET:
+    Returns transactions by username, filtered by start and end timestamp.
+    """
 
     @permission_classes([AllowAny])
     @swagger_auto_schema()
