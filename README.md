@@ -26,7 +26,7 @@ This project is a simple **Stock Exchange API** built using Django and Django RE
 
 1. Clone the repository:
    ```bash
-   [git clone https://github.com/your-repository-link.git](https://github.com/Abdullah-shahzad/Stock_Exchange)
+   [git clone https://github.com/Abdullah-shahzad/Stock_Exchange]
 
 2. Navigate into the project directory: 
    
